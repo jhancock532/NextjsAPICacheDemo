@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:next": "npx tsx src/tests/data-API-route.ts",
+    "test:express": "cd express-cache-demo && npm test",
   },
   "dependencies": {
     "react": "19.0.0-rc-66855b96-20241106",

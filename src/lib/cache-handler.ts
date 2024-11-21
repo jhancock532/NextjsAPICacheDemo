@@ -34,19 +34,18 @@ class CacheHandler {
       // Check stale-while-revalidate
       if (options.staleWhileRevalidate && age < (options.ttl + options.staleWhileRevalidate)) {
         // Revalidate in background
-        this.revalidateData(key, fetchData, options);
+        this.revalidateData(key, fetchData);
         return cached.data;
       }
     }
 
     // If no cache or cache is expired, fetch new data
-    return this.revalidateData(key, fetchData, options);
+    return this.revalidateData(key, fetchData);
   }
 
   private async revalidateData<T>(
     key: string,
     fetchData: () => Promise<T>,
-    options: CacheOptions
   ): Promise<T> {
     const data = await fetchData();
     this.cache.set(key, {

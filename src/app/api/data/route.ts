@@ -54,7 +54,7 @@ export async function GET() {
         'Cache-Control': 'public, s-maxage=5, stale-while-revalidate=2'
       }
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
   }
 } 
