@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
 
 ```bash
+fnm use
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/metadata-test](http://localhost:3000/metadata-test) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Alternatively, run the basic API response time test in a new terminal:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx tsx src/app/api/random/load-test.ts
+```
 
-## Learn More
+## Findings
 
-To learn more about Next.js, take a look at the following resources:
+```
+Starting load test with 10 sequential requests...
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Request #1: 168.6ms
+Request #2: 24.2ms
+Request #3: 23.2ms
+Request #4: 24.4ms
+Request #5: 24.2ms
+Request #6: 22.4ms
+Request #7: 22.8ms
+Request #8: 27.0ms
+Request #9: 22.7ms
+Request #10: 22.3ms
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This is the result against a very simple API endpoint with a random number generator.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Our cache endpoint takes 35ms to 50ms to respond - so there is opportunity to improve this.
